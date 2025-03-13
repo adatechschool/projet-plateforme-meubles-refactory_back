@@ -11,7 +11,6 @@ const getAssises = async (req, res) => {
             JOIN categories ON products.category_id = categories.id
             WHERE categories.name IN ('Chaises', 'Canapés', 'Fauteuils');
         `);
-        console.log(result.rows)
         return res.json(result.rows);
 };
 
@@ -23,7 +22,6 @@ const getRangement = async (req, res) => {
         JOIN categories ON products.category_id = categories.id
         WHERE categories.name IN ('Armoires', 'Etagères', 'Commodes', 'Buffets');
     `);
-    console.log(result.rows)
     return res.json(result.rows);
 };
 
@@ -35,7 +33,6 @@ const getDecorations = async (req, res) => {
         JOIN categories ON products.category_id = categories.id
         WHERE categories.name IN ('Lampes', 'Décorations');
     `);
-    console.log(result.rows)
     return res.json(result.rows);
 };
 
@@ -47,7 +44,6 @@ const getTables = async (req, res) => {
         JOIN categories ON products.category_id = categories.id
         WHERE categories.name IN ('Tables basses', 'Tables', 'Bureaux', 'Tables de chevet');
     `);
-    console.log(result.rows)
     return res.json(result.rows);
 };
 
@@ -59,7 +55,6 @@ const getLits = async (req, res) => {
         JOIN categories ON products.category_id = categories.id
         WHERE categories.name IN ('Lits');
     `);
-    console.log(result.rows)
     return res.json(result.rows);
 };
 

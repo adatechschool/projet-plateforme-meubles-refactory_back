@@ -1,6 +1,5 @@
 const { Pool } = require("pg");
 require('dotenv').config()
-console.log(process.env)
 
 let globalPool;
 

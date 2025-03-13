@@ -8,61 +8,56 @@ const {getPool} = require('./db')
 const pool = getPool()
 
 
-
-const { getProductsMaterials } = require("./get_functions/getProductsMaterials");
-const { getMaterials } = require("./get_functions/getMaterials");
-//import { getAllProducts } from "./get_functions/getAllProdu
-// Importation des fonctions pour récupérer les meubles par catégories
-const {getAssises, getRangement, getDecorations, getTables, getLits} = require("./get_functions/categories")
-
 // Importation de la fonction pour récupérer tous les meubles (totalité)
 const {getAllProducts} = require("./get_functions/getAllProducts")
 
+//Importation de la fonction pour récupérer un meuble individuellement
+const {getProduct} = require("./get_functions/getProduct")
+
+//Importation des fonction pour récupérer les types de matériaux et les produits par matériaux
+const { getMaterials } = require("./get_functions/getMaterials");
+const { getProductsByMaterial } = require("./get_functions/getProductsByMaterial");
+
+//Importation des fonction pour récupérer les couleurs et les produits par couleurs
 const {getColors} = require("./get_functions/getColors")
-const {getColorProduct} = require("./get_functions/getColorProduct")
+const {getProductsByColor} = require("./get_functions/getProductsByColor")
 
+// Importation des fonctions pour récupérer les meubles par catégories
+const {getAssises, getRangement, getDecorations, getTables, getLits} = require("./get_functions/getProductsByCategory")
 
-//import { getAllProducts } from "./get_functions/getAllProducts.js";
-//console.log(pool)
 app.use(cors());
 
-//get All Products chemin
+//Chemin pour récupérer tous les produits
 app.get("/products", getAllProducts);
 
-app.get("/product/:id", async (req, res) => {
-  const commandId = req.params.id;
-  const result = await pool.query("SELECT * FROM products WHERE id= $1",[commandId]);
-  console.log(result.rows);
-res.json(result.rows);
-});
+//Chemin pour un produit 
+app.get("/product/:id", getProduct);
 
-app.get("/products/colors", getColors);
-app.get("/products/color/:id", getColorProduct)
+//Chemin pour récupérer toutes les couleurs
+app.get("/colors", getColors);
 
-// app.get("/color/:id", async (req, res) => {
-//   const colorId = req.params.id;
-//   const data = await pool.query("SELECT products.*, colors.name AS color_name FROM products LEFT JOIN colors ON products.colour_id = colors.id WHERE colors.id= $1",[colorId]);
-//   console.log(data.rows);
-// res.json(data.rows);
-// });
+//Chemin pour récupérer les produits par couleur
+app.get("/products/color/:id", getProductsByColor)
 
-app.get("/products/material/:id", getProductsMaterials)
-
+//Chemin pour récupérer tous les matériaux
 app.get("/materials", getMaterials)
 
-//get Assises chemin
+//Chemin pour récupérer les produits par matériaux
+app.get("/products/material/:id", getProductsByMaterial)
+
+//Chemin pour récupérer la catégorie Assises
 app.get("/products/category/assises", getAssises);
 
-//get Rangement chemin
+//Chemin pour récupérer la catégorie Rangement
 app.get("/products/category/rangements", getRangement);
 
-//get Décorations chemin
+//Chemin pour récupérer la catégorie Décorations
 app.get("/products/category/decorations", getDecorations);
 
-//get Tables chemin
+//Chemin pour récupérer la catégorie Tables et Bureaux
 app.get("/products/category/tables", getTables);
 
-//get Lits chemin
+//Chemin pour récupérer la catégorie Lits
 app.get("/products/category/lits", getLits);
 
 
