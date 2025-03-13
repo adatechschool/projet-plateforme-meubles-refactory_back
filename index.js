@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors")
 
 const app = express();
+app.use(express.json());
 const port = 3000;
 
 const {getPool} = require('./db')
@@ -24,6 +25,10 @@ const {getProductsByColor} = require("./get_functions/getProductsByColor")
 
 // Importation des fonctions pour récupérer les meubles par catégories
 const {getAssises, getRangement, getDecorations, getTables, getLits} = require("./get_functions/getProductsByCategory")
+
+const addProduct = require("./CRUD_Products/add_products");
+
+const deleteProduct = require("./CRUD_Products/delete_products")
 
 app.use(cors());
 
@@ -60,6 +65,9 @@ app.get("/products/category/tables", getTables);
 //Chemin pour récupérer la catégorie Lits
 app.get("/products/category/lits", getLits);
 
+app.use("/product", addProduct);
+
+app.use("/product", deleteProduct)
 
 // Lancement du serveur
 app.listen(port, () => {
