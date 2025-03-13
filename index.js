@@ -7,7 +7,9 @@ const port = 3000;
 const {getPool} = require('./db')
 const pool = getPool()
 
-const {getAllProducts} = require("./get_functions/getAllProducts")
+const {getAllProducts} = require("./get_functions/getAllProducts");
+const { getProductsMaterials } = require("./get_functions/getProductsMaterials");
+const { getMaterials } = require("./get_functions/getMaterials");
 //import { getAllProducts } from "./get_functions/getAllProducts.js";
 
 //console.log(pool)
@@ -23,6 +25,10 @@ app.get("/product/:id", async (req, res) => {
   console.log(result.rows);
 res.json(result.rows);
 });
+
+app.get("/products/material/:id", getProductsMaterials)
+
+app.get("/materials", getMaterials)
 
 // Lancement du serveur
 app.listen(port, () => {
