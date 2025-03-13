@@ -1,4 +1,5 @@
 const { Pool } = require("pg");
+require("dotenv").config();
 
 let globalPool;
 
@@ -11,4 +12,11 @@ const getPool = () => {
   }
   return globalPool;
 };
-module.exports = { getPool };
+
+
+
+const getJwtSecret = () => {
+  return process.env.JWT_SECRET;
+};
+
+module.exports = { getPool, getJwtSecret };
