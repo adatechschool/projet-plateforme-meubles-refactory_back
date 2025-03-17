@@ -28,7 +28,9 @@ const {getAssises, getRangement, getDecorations, getTables, getLits} = require("
 
 const addProduct = require("./CRUD_Products/add_products");
 
-const deleteProduct = require("./CRUD_Products/delete_products")
+const deleteProduct = require("./CRUD_Products/delete_products");
+
+const updateProduct = require("./CRUD_Products/update_products")
 
 app.use(cors());
 
@@ -67,7 +69,9 @@ app.get("/products/category/lits", getLits);
 
 app.use("/product", addProduct);
 
-app.use("/product", deleteProduct)
+app.use("/product", deleteProduct);
+
+app.use("/product", updateProduct);
 
 // Lancement du serveur
 app.listen(port, () => {
