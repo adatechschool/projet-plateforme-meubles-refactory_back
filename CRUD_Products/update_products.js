@@ -1,4 +1,4 @@
-const {getPool} = require('./../db')
+const {getPool} = require('../db')
 const pool = getPool()
 const express = require("express");
 const router = express.Router()
