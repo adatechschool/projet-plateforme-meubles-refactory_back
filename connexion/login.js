@@ -13,9 +13,6 @@ router.post("/login", async (req, res) => {
     if (result.rows[0].password !== password) {
         return res.status(401).json({message: "Invalid password"});
     }
-    res.json(result.rows[0]);
-    const role = result.rows[0].role;
-    return res.json({role});
-}
-)
+    return res.json(result.rows[0]);
+})
 module.exports = router; // Export the router to be used in the main app file (app.js)
