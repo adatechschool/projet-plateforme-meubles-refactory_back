@@ -58,6 +58,16 @@ const getLits = async (req, res) => {
     return res.json(result.rows);
 };
 
+// Fonction fléchée pour récupérer tous les meubles par caterogie_id
+const getCategorieById = async (req, res) => {
+    const result = await pool.query(`
+        SELECT products.*, categories.name AS categories_name
+        FROM products
+        INNER JOIN categories ON products.category_id = categories.id
+    `);
+    return res.json(result.rows);
+};
+
 
 // Exportation des fonctions dans le fichier index.JS
 module.exports = {
@@ -65,5 +75,6 @@ module.exports = {
     getRangement,
     getDecorations,
     getTables,
-    getLits
+    getLits,
+    getCategorieById
 }
