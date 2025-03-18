@@ -8,7 +8,9 @@ router.post("/add", async (req, res) => {
 
         // Insérer l'utilisateur dans la base de données
         const result = await pool.query(
-            "INSERT INTO products (name, category_id, price, description, material_id, size, images, colour_id, availability) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9 ) RETURNING name, category_id, price, description, material_id, size, images, colour_id, availability",
+            `INSERT INTO products (name, category_id, price, description, material_id, size, images, colour_id, availability) 
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9 ) 
+            RETURNING name, category_id, price, description, material_id, size, images, colour_id, availability`,
             [name, category_id, price, description, material_id, size, images, colour_id, availability]
         );
 
