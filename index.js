@@ -23,6 +23,8 @@ const {getAllProducts} = require("./get_functions/getAllProducts")
 //Importation de la fonction pour récupérer un meuble individuellement
 const {getProduct} = require("./get_functions/getProduct")
 
+const { getAllCategorieOfProducts } = require("./get_functions/getAllCategorieOfProducts");
+
 //Importation des fonction pour récupérer les types de matériaux et les produits par matériaux
 const { getMaterials } = require("./get_functions/getMaterials");
 const { getProductsByMaterial } = require("./get_functions/getProductsByMaterial");
@@ -38,13 +40,15 @@ const addProduct = require("./CRUD_Products/add_products");
 
 const deleteProduct = require("./CRUD_Products/delete_products")
 
-const updateProduct = require("./CRUD_Products/update_products")
+const updateProduct = require("./CRUD_Products/update_products");
+
 
 app.use(cors());
 
 //Chemin pour récupérer tous les produits
 app.get("/products", getAllProducts);
 
+app.get("/getAllCategorieOfProducts", getAllCategorieOfProducts)
 //Chemin pour un produit 
 app.get("/product/:id", getProduct);
 

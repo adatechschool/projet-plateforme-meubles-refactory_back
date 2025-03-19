@@ -1,5 +1,5 @@
-const express = require("express");
-const bcrypt = require("bcryptjs");
+const express = require("express"); 
+const bcrypt = require("bcryptjs"); 
 const { getPool } = require("./db"); // Importer la connexion à la DB
 require("dotenv").config();
 
