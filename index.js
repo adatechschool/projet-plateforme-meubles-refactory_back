@@ -1,12 +1,20 @@
 const express = require("express");
 const cors = require("cors")
+const inscriptionRoutes = require("./inscription"); // 📌 Routes d'inscription
+const connexionRoutes = require("./connexion"); // 📌 Routes de connexion
 
 const app = express();
 app.use(express.json());
 const port = 3000;
+app.use(cors()); // 📌 Gère les requêtes cross-origin
+
+// 📌 Enregistre les routes sous `/users`
+app.use("/users", inscriptionRoutes);
+app.use("/users", connexionRoutes);
 
 const {getPool} = require('./db')
 const pool = getPool()
+
 
 
 // Importation de la fonction pour récupérer tous les meubles (totalité)
